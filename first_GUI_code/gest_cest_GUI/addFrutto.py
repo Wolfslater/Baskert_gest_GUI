@@ -11,12 +11,10 @@ class addFruit:
         self.parent = parent
         self.fruit = fruit
         self.selected_basket = ""
-
-        # Create a frame and add it to the master
+      
         self.frame = Frame(self.master)
         self.frame.pack(fill="both", expand=True)
 
-        # Add widgets to the frame
         self.combobox = Combobox(self.frame, width=45)
         self.combobox['values'] = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
         self.combobox.grid(row=0, column=0, padx=15, pady=5)
