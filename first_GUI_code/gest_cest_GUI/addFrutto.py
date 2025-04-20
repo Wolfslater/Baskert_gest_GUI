@@ -1,6 +1,5 @@
-from tkinter import Tk, Frame, Label, Button, END, Toplevel, Entry
 from tkinter.ttk import Combobox
-from Cestino import Cestino
+from tkinter import Frame, Label, Button, END, Entry
 from Frutto import Frutto
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
@@ -11,10 +10,12 @@ class addFruit:
         self.parent = parent
         self.fruit = fruit
         self.selected_basket = ""
-      
+
+        # Create a frame and add it to the master
         self.frame = Frame(self.master)
         self.frame.pack(fill="both", expand=True)
 
+        # Add widgets to the frame
         self.combobox = Combobox(self.frame, width=45)
         self.combobox['values'] = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
         self.combobox.grid(row=0, column=0, padx=15, pady=5)
@@ -42,7 +43,7 @@ class addFruit:
         self.back_btn = Button(self.frame, text="Back", command=self.back)
         self.back_btn.grid(row=5, column=0, padx=40, pady=5)
 
-        self.clear_btn = Button(self.frame, text="Clear all fruit info", command=self.clearInfos)
+        self.clear_btn = Button(self.frame, text="Clear fruit entry infos", command=self.clearInfos)
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
 
     def back(self):

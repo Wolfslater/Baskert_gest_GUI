@@ -1,9 +1,10 @@
-#31 Marzo 2025
+#20 APRILE 2025
 
 import random
 
 class Frutto:
     def __init__(self, q=["", "", ""]):
+        # q è una lista [nom,pre,pes] oppure è None (in tal caso, frutto Random)
         if q == ["", "", ""]:
             x = random.randint(0,1)
             if x==0:
@@ -27,6 +28,7 @@ class Frutto:
         s += ", costo " + str(self.costo()) + " €)"
         return s
 
+# I getter non prendono parametri formali #
     def getNome(self):
         return self.nome
     def getPrezzo(self):

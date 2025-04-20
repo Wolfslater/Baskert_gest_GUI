@@ -1,6 +1,7 @@
 from gestionaleGUI import *
+from tkinter import Tk
 
 if __name__ == '__main__':
     root = Tk()
-    basket = gestionaleGUI(root)
+    gestionaleGUI(root)
     root.mainloop()
