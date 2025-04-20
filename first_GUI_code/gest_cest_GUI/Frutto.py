@@ -4,7 +4,6 @@ import random
 
 class Frutto:
     def __init__(self, q=["", "", ""]):
-        # q è una lista [nom,pre,pes] oppure è None (in tal caso, frutto Random)
         if q == ["", "", ""]:
             x = random.randint(0,1)
             if x==0:
@@ -17,8 +16,8 @@ class Frutto:
                 self.peso_gr = random.randint(15,60)
         else:
             self.nome = q[0]
-            self.prezzo_kg = q[1]
-            self.peso_gr = q[2]
+            self.prezzo_kg = float(q[1])
+            self.peso_gr = int(q[2])
 
     def __str__(self):
         s = ""
@@ -28,7 +27,6 @@ class Frutto:
         s += ", costo " + str(self.costo()) + " €)"
         return s
 
-# I getter non prendono parametri formali #
     def getNome(self):
         return self.nome
     def getPrezzo(self):
