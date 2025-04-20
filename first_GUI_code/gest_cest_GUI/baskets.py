@@ -1,4 +1,4 @@
-from Cestino import *
+from Cestino import Cestino
 
 basket_1 = Cestino()
 basket_2 = Cestino()
