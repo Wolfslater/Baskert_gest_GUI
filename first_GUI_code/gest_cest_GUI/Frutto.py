@@ -3,9 +3,9 @@
 import random
 
 class Frutto:
-    def __init__(self, q=None):
+    def __init__(self, q=["", "", ""]):
         # q è una lista [nom,pre,pes] oppure è None (in tal caso, frutto Random)
-        if q is None:
+        if q == ["", "", ""]:
             x = random.randint(0,1)
             if x==0:
                 self.nome = "Ciliegia"

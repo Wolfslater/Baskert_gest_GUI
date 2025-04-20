@@ -15,6 +15,7 @@ class gestionaleGUI:
         self.fruit = Frutto()
 
     def add(self):
+        self.master.withdraw()
         self.newWindow = Toplevel(self.master)
         addFruit(self.newWindow, self.master, self.fruit)
 
