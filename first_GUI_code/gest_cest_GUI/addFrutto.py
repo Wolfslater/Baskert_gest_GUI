@@ -2,7 +2,8 @@ from tkinter import *
 from tkinter.ttk import *   
 from Cestino import *
 from Frutto import *
-from baskets import basket_1, basket_2, basket_3, basket_4, basket_5
+from baskets import basket_1, basket_2, 
+basket_3, basket_4, basket_5
 
 class addFruit:
     def __init__(self, master, parent, fruit):
