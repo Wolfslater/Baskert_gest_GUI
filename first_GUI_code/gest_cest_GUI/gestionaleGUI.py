@@ -1,4 +1,6 @@
-from addFrutto import *
+#Version 0.3.3 21/04/2925
+
+from addFrutto import Button, Frutto, addFruit
 from tkinter import Toplevel
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
@@ -12,6 +14,7 @@ class gestionaleGUI:
         self.addBtn = Button(self.master, text="Add fruit to the basket.", command=self.add)
         self.exitBtn = Button(self.master, text="Exit the the program.", command=self.exit)
         self.print = Button(self.master, text="pritn basket 1", command=self.printing)
+
         self.addBtn.grid(row=0, column=0, padx=50, pady=0)
         self.exitBtn.grid(row=0, column=1, padx=15, pady=0)
         self.print.grid(row=0, column=2, padx=50, pady=0)

@@ -1,5 +1,7 @@
+#Version 2.3.3 21/04/2925
+
 from tkinter.ttk import Combobox
-from tkinter import Frame, Label, Button, END, Entry
+from tkinter import Label, Button, END, Entry
 from Frutto import Frutto
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
@@ -11,39 +13,35 @@ class addFruit:
         self.fruit = fruit
         self.selected_basket = ""
 
-        # Create a frame and add it to the master
-        self.frame = Frame(self.master)
-        self.frame.pack(fill="both", expand=True)
-
-        # Add widgets to the frame
-        self.combobox = Combobox(self.frame, width=45)
+        self.combobox = Combobox(self.master, width=45)
         self.combobox['values'] = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
-        self.combobox.grid(row=0, column=0, padx=15, pady=5)
         self.combobox["state"] = "readonly"
         self.combobox.bind("<<ComboboxSelected>>", self.getChoice)
 
-        self.name_label = Label(self.frame, text="Fruit name here:")
+        self.combobox.grid(row=0, column=0, padx=15, pady=5)
+
+        self.name_label = Label(self.master, text="Fruit name here:")
+        self.prize_label = Label(self.master, text="Fruit price (€/Kg) here:")
+        self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
+
         self.name_label.grid(row=1, column=0)
-        self.name_entry = Entry(self.frame, width=35)
-        self.name_entry.grid(row=1, column=1)
-
-        self.prize_label = Label(self.frame, text="Fruit price (€/Kg) here:")
         self.prize_label.grid(row=2, column=0)
-        self.prize_entry = Entry(self.frame, width=35)
-        self.prize_entry.grid(row=2, column=1)
-
-        self.weight_label = Label(self.frame, text="Fruit weight (gr) here:")
         self.weight_label.grid(row=3, column=0)
-        self.weight_entry = Entry(self.frame, width=35)
+
+        self.name_entry = Entry(self.master, width=35)
+        self.prize_entry = Entry(self.master, width=35)
+        self.weight_entry = Entry(self.master, width=35)
+
+        self.name_entry.grid(row=1, column=1)
+        self.prize_entry.grid(row=2, column=1)
         self.weight_entry.grid(row=3, column=1)
 
-        self.add_btn = Button(self.frame, text="Add the fruit to the basket", command=self.insertFruit)
-        self.add_btn.grid(column=1, row=4, padx=5, pady=5)
+        self.add_btn = Button(self.master, text="Add the fruit to the basket", command=self.insertFruit)
+        self.back_btn = Button(self.master, text="Back", command=self.back)
+        self.clear_btn = Button(self.master, text="Clear fruit entry infos", command=self.clearInfos)
 
-        self.back_btn = Button(self.frame, text="Back", command=self.back)
+        self.add_btn.grid(row=4, column=1, padx=5, pady=5)
         self.back_btn.grid(row=5, column=0, padx=40, pady=5)
-
-        self.clear_btn = Button(self.frame, text="Clear fruit entry infos", command=self.clearInfos)
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
 
     def back(self):
@@ -59,7 +57,7 @@ class addFruit:
         prize = self.prize_entry.get()
         weight = self.weight_entry.get()
         self.fruit = [name, prize, weight]
-        print(self.fruit)
+        
         if self.fruit is not None:
             self.fruit = Frutto(self.fruit)
         else:
