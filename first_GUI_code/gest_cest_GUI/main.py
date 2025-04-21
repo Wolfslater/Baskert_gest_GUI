@@ -1,4 +1,4 @@
-#31 Marzo 2025
+#Version 1.3.0 21/04/2025<
 
 
 from Frutto import *
