@@ -1,7 +1,6 @@
-#Version 1.2.4 21/04/2025<
+#Version 1.2.4 21/04/2025
 
 class Cestino:
-    
     def __init__(self,q=None):
         # q èuna lista di frutti da mettere nel cestino, eventualmente vuoti
         self.cestino = set()

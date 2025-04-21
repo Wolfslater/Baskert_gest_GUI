@@ -1,4 +1,4 @@
-#Version 2.3.3 21/04/2925
+#Version 2.4.1 21/04/2925
 
 from tkinter.ttk import Combobox
 from tkinter import Label, Button, END, Entry
@@ -7,9 +7,9 @@ from baskets import (basket_1, basket_2,
                      basket_3, basket_4, basket_5)
 
 class addFruit:
-    def __init__(self, master, parent, fruit):
+    def __init__(self, master, relative, fruit):
         self.master = master
-        self.parent = parent
+        self.relative = relative
         self.fruit = fruit
         self.selected_basket = ""
 
@@ -23,10 +23,12 @@ class addFruit:
         self.name_label = Label(self.master, text="Fruit name here:")
         self.prize_label = Label(self.master, text="Fruit price (€/Kg) here:")
         self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
+        self.last_fruit_label = Label(self.master, text="Last added fruit:")
 
         self.name_label.grid(row=1, column=0)
         self.prize_label.grid(row=2, column=0)
         self.weight_label.grid(row=3, column=0)
+        self.last_fruit_label.grid(row=6, column=0)
 
         self.name_entry = Entry(self.master, width=35)
         self.prize_entry = Entry(self.master, width=35)
@@ -45,7 +47,7 @@ class addFruit:
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
 
     def back(self):
-        self.parent.deiconify()
+        self.relative.deiconify()
         self.master.destroy()
 
     def getChoice(self, placeholder):
@@ -62,9 +64,11 @@ class addFruit:
             self.fruit = Frutto(self.fruit)
         else:
             self.fruit = Frutto()
-        self.addToBasket()
 
-        return self.fruit
+        self.lasAddedFruit = Label(self.master, text=self.fruit.getNome())
+        self.lasAddedFruit.grid(row=6, column=1)
+
+        self.addToBasket()
     
     def addToBasket(self):
         if not self.selected_basket: print("Select a basket first!")
