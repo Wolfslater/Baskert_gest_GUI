@@ -35,10 +35,10 @@ class BasketInfos:
         print(self.matchBasket().getTara())
 
     def displeyPrice(self):
-        print(self.selected_basket.costo()
+        print(self.matchBasket().costo()
 )
     def displayNetto(self):
-        print(self.selected_basket.netto())
+        print(self.matchBasket().netto())
 
     def displayBasket(self):
         print(self.selected_basket)
