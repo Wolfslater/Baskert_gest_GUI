@@ -3,4 +3,4 @@ The updated version is gest_cest_GUI. I repeat DO NOT MODIFY THE .PY CONTENT, I 
 
 The repos contain different .py used to recreate a gest of fruit basket via tkinter library.
 The files wich make use of tkinter are: mainGUI.py, gestionaleGUI.py, basketManager.py, addFruit.py.
-The file Baskets make use of the class Cestine to buid 5 different  baskets in wich store the fruits
+The file Baskets makes use of the class Cestino to buid 5 different baskets in wich the fruits can be stored
