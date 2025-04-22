@@ -6,7 +6,7 @@ from tkinter import Toplevel
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
 
-class gestionaleGUI:
+class GUIManagement:
     def __init__(self, master):
         self.master = master
         self.master.geometry("800x600")
