@@ -27,6 +27,7 @@ class addFruit:
         self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
         self.last_fruit_label = Label(self.master, text="Last added fruit:")
         self.lastAddedFruit = Label(self.master)
+      
         self.name_label.grid(row=1, column=0)
         self.prize_label.grid(row=2, column=0)
         self.weight_label.grid(row=3, column=0)
@@ -45,6 +46,7 @@ class addFruit:
         self.add_btn = Button(self.master, text="Add the fruit to the basket", command=self.insertFruit)
         self.back_btn = Button(self.master, text="Back", command=self.back)
         self.clear_btn = Button(self.master, text="Clear fruit entry infos", command=self.clearInfos)
+      
         self.add_btn.grid(row=4, column=1, padx=5, pady=5)
         self.back_btn.grid(row=5, column=0, padx=40, pady=5)
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
