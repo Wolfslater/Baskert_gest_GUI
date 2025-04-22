@@ -34,6 +34,3 @@ class gestionaleGUI:
         self.master.withdraw()
         self.newWindow = Toplevel(self.master)
         BasketInfos(self.newWindow, self.master)
-
-    def printing(self):
-        print(basket_1)
