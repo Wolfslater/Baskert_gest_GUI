@@ -1,6 +1,6 @@
 #Version 0.3.3 21/04/2925
 
-from addFrutto import Button, Frutto, addFruit
+from addFruit import Button, Frutto, addFruit
 from basketManager import BasketInfos
 from tkinter import Toplevel
 from baskets import (basket_1, basket_2, 
