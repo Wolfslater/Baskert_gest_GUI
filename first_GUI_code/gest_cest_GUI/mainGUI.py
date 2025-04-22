@@ -1,6 +1,6 @@
 #Version 0.2.3 21/04/2925
 
-from gestionaleGUI import gestionaleGUI
+from GUImanagement import GUIManagement
 from tkinter import Tk
 
 if __name__ == '__main__':
