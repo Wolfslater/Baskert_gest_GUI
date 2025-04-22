@@ -1,7 +1,7 @@
 #Version 1.51.3 22/04/2025
 
 from tkinter import Text
-from addFrutto import Combobox, Button, Label, END
+from addFruit import Combobox, Button, Label, END
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
 
@@ -11,16 +11,16 @@ class BasketInfos:
         self.relative = relative
         self.selected_basket = ""
 
-        self.tara_label = Label()
-        self.netto_label = Label()
+        self.tare_label = Label()
+        self.nett_label = Label()
         self.prize_label = Label()
         self.basket_content = Text(self.master)
 
         #self.basket_content.grid(row=2, column=1)
 
         self.backBtn = Button(self.master, text="Back", command=self.back)
-        self.taraBtn = Button(self.master, text="Disply tara", command=self.displaytara)
-        self.nettoBtn = Button(self.master, text="Disply netto", command=self.displayNetto)
+        self.tareBtn = Button(self.master, text="Disply tare", command=self.displayTare)
+        self.nettBtn = Button(self.master, text="Disply nett", command=self.displayNett)
         self.basketBtn = Button(self.master, text="Disply basket", command=self.displayBasket)
         self.PrizetBtn = Button(self.master, text="Disply basket's prize", command=self.displayPrice)
 
@@ -33,8 +33,8 @@ class BasketInfos:
         self.combobox.grid(row=0, column=5)
 
         self.backBtn.grid(row=0, column=0)
-        self.taraBtn.grid(row=0, column=1)
-        self.nettoBtn.grid(row=0, column=2)
+        self.tareBtn.grid(row=0, column=1)
+        self.nettBtn.grid(row=0, column=2)
         self.basketBtn.grid(row=0, column=3)
         self.PrizetBtn.grid(row=0, column=4)
 
@@ -42,14 +42,14 @@ class BasketInfos:
         self.relative.deiconify()
         self.master.destroy()
 
-    def displaytara(self):
-        print(self.matchBasket().getTara())
+    def displayTare(self):
+        print(self.matchBasket().gettare())
 
     def displayPrice(self):
         print(self.matchBasket().costo())
         
-    def displayNetto(self):
-        print(self.matchBasket().netto())
+    def displayNett(self):
+        print(self.matchBasket().nett())
 
     def displayBasket(self):
         self.basket_content.insert(END, self.matchBasket())
