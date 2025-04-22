@@ -5,5 +5,5 @@ from tkinter import Tk
 
 if __name__ == '__main__':
     root = Tk()
-    gestionaleGUI(root)
+    GUIManagement(root)
     root.mainloop()

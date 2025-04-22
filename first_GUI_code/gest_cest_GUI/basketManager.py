@@ -43,13 +43,13 @@ class BasketInfos:
         self.master.destroy()
 
     def displayTare(self):
-        print(self.matchBasket().gettare())
+        print(self.matchBasket().getTare())
 
     def displayPrice(self):
-        print(self.matchBasket().costo())
+        print(self.matchBasket().getPrice())
         
     def displayNett(self):
-        print(self.matchBasket().nett())
+        print(self.matchBasket().getNnett())
 
     def displayBasket(self):
         self.basket_content.insert(END, self.matchBasket())

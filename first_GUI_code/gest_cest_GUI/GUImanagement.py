@@ -3,8 +3,6 @@
 from addFruit import Button, Frutto, addFruit
 from basketManager import BasketInfos
 from tkinter import Toplevel
-from baskets import (basket_1, basket_2, 
-                     basket_3, basket_4, basket_5)
 
 class GUIManagement:
     def __init__(self, master):

@@ -1,5 +1,3 @@
-#version 0.1.0 19/04/2025
-
 from Cestino import *
 
 basket_1 = Cestino()

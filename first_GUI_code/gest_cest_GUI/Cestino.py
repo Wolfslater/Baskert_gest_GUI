@@ -4,7 +4,7 @@ class Cestino:
     def __init__(self,q=None):
         # q èuna lista di frutti da mettere nel cestino, eventualmente vuoti
         self.cestino = set()
-        self.tara = 20
+        self.tare = 20
         if not q is None:
             for x in q:
                 self.add(x)
@@ -12,20 +12,20 @@ class Cestino:
     def add(self, f):
         self.cestino.add(f)
     
-    def costo(self):
+    def getPrice(self):
         c = 0.0
         for x in self.cestino:
-            c+=x.costo()
+            c+=x.price()
         return round(c,2)
     
-    def netto(self):
-        c = self.tara
+    def getNnett(self):
+        c = self.tare
         for x in self.cestino:
-            c+=x.getPeso()
+            c+=x.getWeight()
         return c
     
-    def getTara(self):
-        return str(self.tara)
+    def getTare(self):
+        return str(self.tare)
 
     def len(self):
         return len(self.cestino)

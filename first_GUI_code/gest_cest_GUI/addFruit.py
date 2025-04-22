@@ -68,7 +68,8 @@ class addFruit:
             self.fruit = Frutto()
 
         self.lastAddedFruit.config(text="")
-        self.lastAddedFruit = Label(self.master, text=self.fruit.getNome())
+        print(self.fruit.getName())
+        self.lastAddedFruit = Label(self.master, text=self.fruit.getName())
 
         self.addToBasket()
     
