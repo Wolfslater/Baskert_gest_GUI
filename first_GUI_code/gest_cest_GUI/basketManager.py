@@ -1,6 +1,7 @@
-#Version 1.5.2 21/04/2025
+#Version 1.51.3 22/04/2025
 
-from addFrutto import Combobox, Button
+from tkinter import Text
+from addFrutto import Combobox, Button, Label, END
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
 
@@ -10,6 +11,13 @@ class BasketInfos:
         self.relative = relative
         self.selected_basket = ""
 
+        self.tara_label = Label()
+        self.netto_label = Label()
+        self.prize_label = Label()
+        self.basket_content = Text(self.master)
+
+        #self.basket_content.grid(row=2, column=1)
+
         self.backBtn = Button(self.master, text="Back", command=self.back)
         self.taraBtn = Button(self.master, text="Disply tara", command=self.displaytara)
         self.nettoBtn = Button(self.master, text="Disply netto", command=self.displayNetto)
@@ -17,18 +25,18 @@ class BasketInfos:
         self.PrizetBtn = Button(self.master, text="Disply basket's prize", command=self.displayPrice)
 
 
-        self.combobox = Combobox(self.master)
+        self.combobox = Combobox(self.master, width=40)
         self.combobox["values"] = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
         self.combobox["state"] = "readonly"
         self.combobox.bind("<<ComboboxSelected>>", self.getChoice)
 
-        self.combobox.grid(row=1, column=0, padx=15, pady=5, columnspan=10)
+        self.combobox.grid(row=0, column=5)
 
-        self.backBtn.grid(row=0, column=0, padx=15, pady=15)
-        self.taraBtn.grid(row=0, column=1, padx=15, pady=15)
-        self.nettoBtn.grid(row=0, column=2, padx=15, pady=15)
-        self.basketBtn.grid(row=0, column=3, padx=15, pady=15)
-        self.PrizetBtn.grid(row=0, column=4, padx=15, pady=15)
+        self.backBtn.grid(row=0, column=0)
+        self.taraBtn.grid(row=0, column=1)
+        self.nettoBtn.grid(row=0, column=2)
+        self.basketBtn.grid(row=0, column=3)
+        self.PrizetBtn.grid(row=0, column=4)
 
     def back(self):
         self.relative.deiconify()
@@ -44,7 +52,7 @@ class BasketInfos:
         print(self.matchBasket().netto())
 
     def displayBasket(self):
-        print(self.matchBasket())
+        self.basket_content.insert(END, self.matchBasket())
 
     def getChoice(self, placeholder):
         self.selected_basket = str(self.combobox.get())
