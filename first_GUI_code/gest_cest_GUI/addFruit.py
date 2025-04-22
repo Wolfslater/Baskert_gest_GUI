@@ -1,4 +1,4 @@
-#Version 2.4.3 22/04/2925
+#Version 2.4.5 22/04/2925
 
 from tkinter.ttk import Combobox
 from tkinter import Label, Button, END, Entry
@@ -24,7 +24,7 @@ class addFruit:
         self.prize_label = Label(self.master, text="Fruit price (€/Kg) here:")
         self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
         self.last_fruit_label = Label(self.master, text="Last added fruit:")
-        self.lastAddedFruit = Label()
+        self.lastAddedFruit = Label(self.master)
 
         self.name_label.grid(row=1, column=0)
         self.prize_label.grid(row=2, column=0)
@@ -69,7 +69,7 @@ class addFruit:
 
         self.lastAddedFruit.config(text="")
         print(self.fruit.getName())
-        self.lastAddedFruit = Label(self.master, text=self.fruit.getName())
+        self.lastAddedFruit.config(text=self.fruit.getName())
 
         self.addToBasket()
     
