@@ -1,7 +1,7 @@
-# Version 1.5.13 22/04/2025
+# Version 1.6.5 23/04/2025
 
 from tkinter import Text
-from addFruit import Combobox, Button, Label, END
+from addFruit import Combobox, Button, END, messagebox
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
 
@@ -12,18 +12,17 @@ class BasketInfos:
         self.relative = relative
         self.selected_basket = ""
 
-        # Labels and text area for basket details
-        self.tare_label = Label()
-        self.nett_label = Label()
-        self.prize_label = Label()
-        self.basket_content = Text(self.master)
+        # Labels and text area for basket details - NOT disabled initially
+        self.basket_content = Text(self.master, bg="#f0f0f0")
 
         # Buttons for actions
         self.backBtn = Button(self.master, text="Back", command=self.back)
-        self.tareBtn = Button(self.master, text="Disply tare", command=self.displayTare)
-        self.nettBtn = Button(self.master, text="Disply nett", command=self.displayNett)
-        self.basketBtn = Button(self.master, text="Disply basket", command=self.displayBasket)
-        self.PrizetBtn = Button(self.master, text="Disply basket's prize", command=self.displayPrice)
+        self.tareBtn = Button(self.master, text="Display tare", command=self.displayTare)
+        self.nettBtn = Button(self.master, text="Display nett", command=self.displayNett)
+        self.basketBtn = Button(self.master, text="Display basket", command=self.displayBasket)
+        self.PrizetBtn = Button(self.master, text="Display basket's price", command=self.displayPrice)
+        self.grossBtn = Button(self.master, text="Display basket's gross weight",
+                               command=self.displayGrossWeight)
 
         # Dropdown to select a basket
         self.combobox = Combobox(self.master, width=40)
@@ -32,40 +31,77 @@ class BasketInfos:
         self.combobox.bind("<<ComboboxSelected>>", self.getChoice)
 
         # Arrange GUI components in a grid
-        self.combobox.grid(row=0, column=5)
-        self.backBtn.grid(row=0, column=0)
-        self.tareBtn.grid(row=0, column=1)
-        self.nettBtn.grid(row=0, column=2)
-        self.basketBtn.grid(row=0, column=3)
-        self.PrizetBtn.grid(row=0, column=4)
+        self.master.grid_columnconfigure(0, weight=1)  # Back button column
+        self.master.grid_columnconfigure(1, weight=1)  # Tare button column
+        self.master.grid_columnconfigure(2, weight=1)  # Nett button column
+        self.master.grid_columnconfigure(3, weight=1)  # Gross weight column
+        self.master.grid_columnconfigure(4, weight=1)  # Basket button column
+        self.master.grid_columnconfigure(5, weight=1)  # Prize button column
+        self.master.grid_columnconfigure(6, weight=1)  # Dropdown column
+
+        # Place the Text widget in column 1 (adjust as needed)
+        self.basket_content.grid(row=1, column=0, columnspan=6, sticky="nsew")  # Expand across multiple columns if necessary
+
+        # Place the buttons and combobox
+        self.combobox.grid(row=0, column=6, sticky="ew")
+        self.backBtn.grid(row=0, column=0, sticky="ew")
+        self.tareBtn.grid(row=0, column=1, sticky="ew")
+        self.nettBtn.grid(row=0, column=2, sticky="ew")
+        self.grossBtn.grid(row=0, column=3, sticky="ew")
+        self.basketBtn.grid(row=0, column=4, sticky="ew")
+        self.PrizetBtn.grid(row=0, column=5, sticky="ew")
 
     def back(self):
         # Go back to the previous window
         self.relative.deiconify()
         self.master.destroy()
 
+    def showWarning(self):
+        self.messagebox = messagebox.showwarning(
+            "WARNING", "Select a basket first")
+        
+    def update_text_display(self, content):
+        # Helper function to update text and make it read-only
+        self.basket_content.config(state="normal")  # Ensure it's editable first
+        self.basket_content.delete("1.0", "end")    # Clear existing content
+        self.basket_content.insert(END, content)    # Add new content
+        self.basket_content.config(state="disabled") # Make read-only
+    
+    def displayGrossWeight(self):
+        if self.matchBasket():
+            self.gross = self.matchBasket().getGroosWeight()
+            self.update_text_display(f"Basket's gross weight is: {self.gross}gr")
+
     def displayTare(self):
+        if self.matchBasket(): 
         # Print the basket's tare weight
-        print(self.matchBasket().getTare())
+            self.tare = self.matchBasket().getTare()
+            self.update_text_display(f"Basket's tare is: {self.tare}gr")
 
     def displayPrice(self):
-        # Print the basket's price
-        print(self.matchBasket().getPrice())
-        
+        if self.matchBasket(): 
+            # Print the basket's price
+            self.price = self.matchBasket().getPrice()
+            self.update_text_display(f"Basket's total price is: {self.price}€")
+            
     def displayNett(self):
-        # Print the basket's net weight
-        print(self.matchBasket().getNnett())
-
+        if self.matchBasket(): 
+            # Print the basket's net weight
+            self.nett = self.matchBasket().getNett()
+            self.update_text_display(f"Basket's nett is: {self.nett}gr")
+        
     def displayBasket(self):
-        # Show the basket's content in the text area
-        self.basket_content.insert(END, self.matchBasket())
+        if self.matchBasket(): 
+            # Show the basket's content in the text area
+            self.update_text_display(str(self.matchBasket()))
 
     def getChoice(self, placeholder):
         # Set the selected basket based on dropdown choice
         self.selected_basket = str(self.combobox.get())
-        print(self.selected_basket)
 
     def matchBasket(self):
+        if not self.selected_basket: 
+            self.showWarning()
         # Match the selected basket to its corresponding object
         match self.selected_basket:
             case "Basket 1":
