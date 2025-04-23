@@ -1,4 +1,4 @@
-# Version 0.3.3 21/04/2925
+# Version 0.3.3 21/04/2025
 
 from addFruit import Button, Frutto, addFruit
 from basketManager import BasketInfos
