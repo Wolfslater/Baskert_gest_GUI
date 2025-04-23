@@ -1,7 +1,7 @@
-# Version 2.4.5 22/04/2925
+# Version 2.4.6 23/04/2925
 
 from tkinter.ttk import Combobox
-from tkinter import Label, Button, END, Entry
+from tkinter import Label, Button, END, Entry, messagebox
 from Frutto import Frutto
 from baskets import (basket_1, basket_2, 
                      basket_3, basket_4, basket_5)
@@ -25,15 +25,13 @@ class addFruit:
         self.name_label = Label(self.master, text="Fruit name here:")
         self.prize_label = Label(self.master, text="Fruit price (€/Kg) here:")
         self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
-        self.last_fruit_label = Label(self.master, text="Last added fruit:")
-        self.lastAddedFruit = Label(self.master)
+        self.last_fruit_label = Label(self.master)
 
         # Labels layout
         self.name_label.grid(row=1, column=0)
         self.prize_label.grid(row=2, column=0)
         self.weight_label.grid(row=3, column=0)
-        self.last_fruit_label.grid(row=6, column=0)
-        self.lastAddedFruit.grid(row=6, column=1)
+        self.last_fruit_label.grid(row=6, column=0, sticky="w")
 
         # Entry widgets for user input
         self.name_entry = Entry(self.master, width=35)
@@ -54,6 +52,10 @@ class addFruit:
         self.add_btn.grid(row=4, column=1, padx=5, pady=5)
         self.back_btn.grid(row=5, column=0, padx=40, pady=5)
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
+    
+    def showWarning(self):
+        self.messagebox = messagebox.showwarning(
+            "WARNING", "Select a basket first")
 
     def back(self):
         # Return to the previous window
@@ -63,7 +65,6 @@ class addFruit:
     def getChoice(self, placeholder):
         # Get the selected basket
         self.selected_basket = str(self.combobox.get())
-        print(self.selected_basket)
     
     def insertFruit(self):
         # Create a fruit object and display its name
@@ -77,34 +78,31 @@ class addFruit:
         else:
             self.fruit = Frutto()
 
-        self.lastAddedFruit.config(text="")
-        print(self.fruit.getName())
-        self.lastAddedFruit.config(text=self.fruit.getName())
-
-        self.addToBasket()
+        if self.selected_basket:
+            self.last_fruit_label.config(text="")
+            self.last_fruit_label.config(text=
+            f"Last added fruit: {self.fruit.getName()}")
+            
+            self.addToBasket()
+        else:
+            self.showWarning()
     
     def addToBasket(self):
         # Add the fruit to the selected basket
         if not self.selected_basket: 
-            print("Select a basket first!")
-            return
+            self.showWarning()
         
         match self.selected_basket:
             case "Basket 1":
                 basket_1.add(self.fruit)
-                print(basket_1)
             case "Basket 2":
                 basket_2.add(self.fruit)
-                print(basket_2)
             case "Basket 3":
                 basket_3.add(self.fruit)
-                print(basket_3)
             case "Basket 4":
                 basket_4.add(self.fruit)
-                print(basket_4)
             case "Basket 5":
                 basket_5.add(self.fruit)
-                print(basket_5)
 
     def clearInfos(self):
         # Clear the input fields
