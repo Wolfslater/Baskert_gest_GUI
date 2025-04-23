@@ -1,4 +1,4 @@
-# Version 0.2.3 21/04/2025
+# Version 0.2.3 21/04/2925
 
 # Import the GUIManagement class from the GUImanagement module.
 from GUImanagement import GUIManagement

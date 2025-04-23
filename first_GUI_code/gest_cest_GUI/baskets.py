@@ -1,4 +1,5 @@
-# Version 0.1.0 21/04/2025
+# Importing all contents from the module `Cestino`.
+# This likely includes the definition of the `Cestino` class used later in the code.
 from Cestino import *
 
 # Creating multiple instances of the `Cestino` class.
