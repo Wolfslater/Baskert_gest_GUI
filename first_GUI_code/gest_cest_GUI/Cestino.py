@@ -1,4 +1,4 @@
-#Version 1.2.4 21/04/2025
+#Version 1.2.6 23/04/2025
 
 class Cestino:
     def __init__(self,q=None):
@@ -18,12 +18,18 @@ class Cestino:
             c+=x.price()
         return round(c,2)
     
-    def getNnett(self):
-        c = self.tare
+    def getNett(self):
+        c = 0.0
         for x in self.cestino:
             c+=x.getWeight()
         return c
     
+    def getGroosWeight(self):
+        grossWeight = self.getTare()
+        if self.getNett() != 0.0:
+            grossWeight = int(self.getTare()) + int(self.getNett())
+        return grossWeight
+        
     def getTare(self):
         return str(self.tare)
 
