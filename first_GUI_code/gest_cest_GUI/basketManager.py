@@ -1,4 +1,4 @@
-# Version 1.51.3 22/04/2025
+# Version 1.5.13 22/04/2025
 
 from tkinter import Text
 from addFruit import Combobox, Button, Label, END

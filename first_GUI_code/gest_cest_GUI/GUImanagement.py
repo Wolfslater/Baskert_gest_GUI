@@ -33,4 +33,4 @@ class GUIManagement:
     def basketManager(self):  # Open basket manager
         self.master.withdraw()
         self.newWindow = Toplevel(self.master)
-        BasketInfos(self.newWindow, self.master)v
+        BasketInfos(self.newWindow, self.master)
