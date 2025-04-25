@@ -1,4 +1,4 @@
-# Version 2.6.2 24/04/2925
+# Version 2.6.3 24/04/2925
 
 from tkinter.ttk import Combobox
 from tkinter import Label, Button, END, Entry, messagebox
@@ -61,7 +61,7 @@ class addFruit:
         self.messagebox = messagebox.showwarning(
             "WARNING", "ERROR:" \
             "MASSING DATAOR WRONG DATA TYPE." \
-            "\nBasket's PRICE and WEIGHT MUST be NUMBERS")
+            "\nPrice and weight must be numeric values.")
 
     def back(self):
         # Return to the previous window
