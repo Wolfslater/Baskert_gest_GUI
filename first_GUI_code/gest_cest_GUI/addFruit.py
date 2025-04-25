@@ -56,13 +56,12 @@ class addFruit:
     def showBasketWarning(self):
         self.messagebox = messagebox.showwarning(
             "WARNING", "Select a basket first")
-        
     def showEntryWarning(self):
         self.messagebox = messagebox.showwarning(
             "WARNING", "ERROR:" \
             "MASSING DATAOR WRONG DATA TYPE." \
             "\nPrice and weight must be numeric values.")
-
+    
     def back(self):
         # Return to the previous window
         self.relative.deiconify()
@@ -74,7 +73,23 @@ class addFruit:
     
     def insertFruit(self):
         self.fruit = self.getFruit()
-        self.errorHandler()
+
+        try: 
+            if self.fruit is not None:
+                self.fruit = Frutto(self.fruit)
+            elif self.fruit is None:
+                self.fruit = Frutto()
+
+            if self.selected_basket:
+                self.last_fruit_label.config(text="")
+                self.last_fruit_label.config(text=
+                f"Last added fruit: {self.fruit.getName()}")
+                
+                self.addToBasket()
+            else:
+                self.showBasketWarning()
+        except ValueError:
+            self.showEntryWarning()
     
     def addToBasket(self):
         # Add the fruit to the selected basket
@@ -104,21 +119,3 @@ class addFruit:
         # Clear the input fields
         for entry in [self.name_entry, self.price_entry, self.weight_entry]:
           entry.delete(0, END)
-    
-    def errorHandler(self):
-        try: 
-            if self.fruit is not None:
-                self.fruit = Frutto(self.fruit)
-            elif self.fruit is None:
-                self.fruit = Frutto()
-
-            if self.selected_basket:
-                self.last_fruit_label.config(text="")
-                self.last_fruit_label.config(text=
-                f"Last added fruit: {self.fruit.getName()}")
-                
-                self.addToBasket()
-            else:
-                self.showBasketWarning()
-        except ValueError:
-            self.showEntryWarning()
