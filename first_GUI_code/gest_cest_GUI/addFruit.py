@@ -102,9 +102,8 @@ class addFruit:
     
     def clearInfos(self):
         # Clear the input fields
-        self.name_entry.delete(0, END)
-        self.prize_entry.delete(0, END)
-        self.weight_entry.delete(0, END)
+        for entry in [self.name_entry, self.price_entry, self.weight_entry]:
+          entry.delete(0, END)
     
     def errorHandler(self):
         try: 
