@@ -1,4 +1,4 @@
-# Version 2.52.2 24/04/2925
+# Version 2.6.2 24/04/2925
 
 from tkinter.ttk import Combobox
 from tkinter import Label, Button, END, Entry, messagebox
@@ -60,7 +60,7 @@ class addFruit:
     def showEntryWarning(self):
         self.messagebox = messagebox.showwarning(
             "WARNING", "ERROR:" \
-            "DATA MASSING OR WRONG DATA TYPE:" \
+            "DATA MASSING OR WRONG DATA TYPE." \
             "\nBasket's PRICE and WEIGHT MUST be NUMBERS")
 
     def back(self):
@@ -74,23 +74,7 @@ class addFruit:
     
     def insertFruit(self):
         self.fruit = self.getFruit()
-        
-        try: 
-            if self.fruit is not None:
-                self.fruit = Frutto(self.fruit)
-            elif self.fruit is None:
-                self.fruit = Frutto()
-
-            if self.selected_basket:
-                self.last_fruit_label.config(text="")
-                self.last_fruit_label.config(text=
-                f"Last added fruit: {self.fruit.getName()}")
-                
-                self.addToBasket()
-            else:
-                self.showBasketWarning()
-        except ValueError:
-            self.showEntryWarning()
+        self.errorHandler()
     
     def addToBasket(self):
         # Add the fruit to the selected basket
@@ -121,3 +105,21 @@ class addFruit:
         self.name_entry.delete(0, END)
         self.prize_entry.delete(0, END)
         self.weight_entry.delete(0, END)
+    
+    def errorHandler(self):
+        try: 
+            if self.fruit is not None:
+                self.fruit = Frutto(self.fruit)
+            elif self.fruit is None:
+                self.fruit = Frutto()
+
+            if self.selected_basket:
+                self.last_fruit_label.config(text="")
+                self.last_fruit_label.config(text=
+                f"Last added fruit: {self.fruit.getName()}")
+                
+                self.addToBasket()
+            else:
+                self.showBasketWarning()
+        except ValueError:
+            self.showEntryWarning()
