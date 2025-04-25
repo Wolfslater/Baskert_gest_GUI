@@ -60,7 +60,7 @@ class addFruit:
     def showEntryWarning(self):
         self.messagebox = messagebox.showwarning(
             "WARNING", "ERROR:" \
-            "DATA MASSING OR WRONG DATA TYPE." \
+            "MASSING DATAOR WRONG DATA TYPE." \
             "\nBasket's PRICE and WEIGHT MUST be NUMBERS")
 
     def back(self):
