@@ -1,4 +1,4 @@
-# Version 2.6.3 25/04/2925
+# Version 2.6.3 25 /04/2925
 
 from tkinter.ttk import Combobox
 from tkinter import Label, Button, END, Entry, messagebox
@@ -23,24 +23,24 @@ class addFruit:
 
         # Labels for inputs and last added fruit
         self.name_label = Label(self.master, text="Fruit name here:")
-        self.prize_label = Label(self.master, text="Fruit price (€/Kg) here:")
+        self.price_label = Label(self.master, text="Fruit price (€/Kg) here:")
         self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
         self.last_fruit_label = Label(self.master)
 
         # Labels layout
         self.name_label.grid(row=1, column=0)
-        self.prize_label.grid(row=2, column=0)
+        self.price_label.grid(row=2, column=0)
         self.weight_label.grid(row=3, column=0)
         self.last_fruit_label.grid(row=6, column=0, sticky="w")
 
         # Entry widgets for user input
         self.name_entry = Entry(self.master, width=35)
-        self.prize_entry = Entry(self.master, width=35)
+        self.price_entry = Entry(self.master, width=35)
         self.weight_entry = Entry(self.master, width=35)
 
         # Entry layout
         self.name_entry.grid(row=1, column=1)
-        self.prize_entry.grid(row=2, column=1)
+        self.price_entry.grid(row=2, column=1)
         self.weight_entry.grid(row=3, column=1)
 
         # Buttons for different actions
@@ -58,8 +58,8 @@ class addFruit:
             "WARNING", "Select a basket first")
     def showEntryWarning(self):
         self.messagebox = messagebox.showwarning(
-            "WARNING", "ERROR:" \
-            "MASSING DATAOR WRONG DATA TYPE." \
+            "WARNING", "ERROR: " \
+            "MISSING DATA OR WRONG DATA TYPE." \
             "\nPrice and weight must be numeric values.")
     
     def back(self):
@@ -75,7 +75,7 @@ class addFruit:
         self.fruit = self.getFruit()
 
         try: 
-            if self.fruit is not None:
+            if self.fruit:
                 self.fruit = Frutto(self.fruit)
             elif self.fruit is None:
                 self.fruit = Frutto()
@@ -111,9 +111,9 @@ class addFruit:
     def getFruit(self):
         # Create a fruit object and display its name
         name = self.name_entry.get()
-        prize = self.prize_entry.get()
+        price = self.price_entry.get()
         weight = self.weight_entry.get()
-        return [name, prize, weight]
+        return [name, price, weight]
     
     def clearInfos(self):
         # Clear the input fields
