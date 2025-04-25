@@ -1,4 +1,4 @@
-# Version 2.4.6 23/04/2925
+# Version 2.5.0 24/04/2925
 
 from tkinter.ttk import Combobox
 from tkinter import Label, Button, END, Entry, messagebox
@@ -53,9 +53,14 @@ class addFruit:
         self.back_btn.grid(row=5, column=0, padx=40, pady=5)
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
     
-    def showWarning(self):
+    def showBasketWarning(self):
         self.messagebox = messagebox.showwarning(
             "WARNING", "Select a basket first")
+        
+    def showEntryWarning(self):
+        self.messagebox = messagebox.showwarning(
+            "WARNING", "Fill all fruit data"
+        )
 
     def back(self):
         # Return to the previous window
@@ -67,30 +72,29 @@ class addFruit:
         self.selected_basket = str(self.combobox.get())
     
     def insertFruit(self):
-        # Create a fruit object and display its name
-        name = self.name_entry.get()
-        prize = self.prize_entry.get()
-        weight = self.weight_entry.get()
-        self.fruit = [name, prize, weight]
+        self.fruit = self.getFruit()
         
-        if self.fruit is not None:
-            self.fruit = Frutto(self.fruit)
-        else:
-            self.fruit = Frutto()
+        try: 
+            if self.fruit is not None:
+                self.fruit = Frutto(self.fruit)
+            elif self.fruit is None:
+                self.fruit = Frutto()
 
-        if self.selected_basket:
-            self.last_fruit_label.config(text="")
-            self.last_fruit_label.config(text=
-            f"Last added fruit: {self.fruit.getName()}")
-            
-            self.addToBasket()
-        else:
-            self.showWarning()
+            if self.selected_basket:
+                self.last_fruit_label.config(text="")
+                self.last_fruit_label.config(text=
+                f"Last added fruit: {self.fruit.getName()}")
+                
+                self.addToBasket()
+            else:
+                self.showBasketWarning()
+        except ValueError:
+            self.showEntryWarning()
     
     def addToBasket(self):
         # Add the fruit to the selected basket
         if not self.selected_basket: 
-            self.showWarning()
+            self.showBasketWarning()
         
         match self.selected_basket:
             case "Basket 1":
@@ -103,7 +107,14 @@ class addFruit:
                 basket_4.add(self.fruit)
             case "Basket 5":
                 basket_5.add(self.fruit)
-
+    
+    def getFruit(self):
+        # Create a fruit object and display its name
+        name = self.name_entry.get()
+        prize = self.prize_entry.get()
+        weight = self.weight_entry.get()
+        return [name, prize, weight]
+    
     def clearInfos(self):
         # Clear the input fields
         self.name_entry.delete(0, END)
