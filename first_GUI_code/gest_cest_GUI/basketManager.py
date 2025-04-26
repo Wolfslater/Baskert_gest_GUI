@@ -1,9 +1,10 @@
-# Version 1.6.5 23/04/2025
+# Version 1.7.0 26/04/2025
 
+from dropDown import DropDown
 from tkinter import Text
-from addFruit import Combobox, Button, END, messagebox
-from baskets import (basket_1, basket_2, 
-                     basket_3, basket_4, basket_5)
+from addFruit import Button, END, messagebox
+from baskets import (basket_1, basket_2, basket_3,
+                     basket_4, basket_5, values)
 
 class BasketInfos:
     def __init__(self, master, relative):
@@ -25,10 +26,8 @@ class BasketInfos:
                                command=self.displayGrossWeight)
 
         # Dropdown to select a basket
-        self.combobox = Combobox(self.master, width=40)
-        self.combobox["values"] = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
-        self.combobox["state"] = "readonly"
-        self.combobox.bind("<<ComboboxSelected>>", self.getChoice)
+        self.dropdown = DropDown(master, values, self.dropdownHandler)
+        self.dropdown.combobox.grid(row=0, column=6, sticky="ew")
 
         # Arrange GUI components in a grid
         self.master.grid_columnconfigure(0, weight=1)  # Back button column
@@ -43,7 +42,6 @@ class BasketInfos:
         self.basket_content.grid(row=1, column=0, columnspan=6, sticky="nsew")  # Expand across multiple columns if necessary
 
         # Place the buttons and combobox
-        self.combobox.grid(row=0, column=6, sticky="ew")
         self.backBtn.grid(row=0, column=0, sticky="ew")
         self.tareBtn.grid(row=0, column=1, sticky="ew")
         self.nettBtn.grid(row=0, column=2, sticky="ew")
@@ -55,10 +53,6 @@ class BasketInfos:
         # Go back to the previous window
         self.relative.deiconify()
         self.master.destroy()
-
-    def showWarning(self):
-        self.messagebox = messagebox.showwarning(
-            "WARNING", "Select a basket first")
         
     def update_text_display(self, content):
         # Helper function to update text and make it read-only
@@ -69,7 +63,7 @@ class BasketInfos:
     
     def displayGrossWeight(self):
         if self.matchBasket():
-            self.gross = self.matchBasket().getGroosWeight()
+            self.gross = self.matchBasket().getGrossWeight()
             self.update_text_display(f"Basket's gross weight is: {self.gross}gr")
 
     def displayTare(self):
@@ -94,14 +88,15 @@ class BasketInfos:
         if self.matchBasket(): 
             # Show the basket's content in the text area
             self.update_text_display(str(self.matchBasket()))
-
-    def getChoice(self, placeholder):
-        # Set the selected basket based on dropdown choice
-        self.selected_basket = str(self.combobox.get())
+    
+    def dropdownHandler(self, event=None):
+        selectedItem = self.dropdown.getBasket()
+        if not selectedItem:
+            self.dropdown.showWarning()
+        else:
+            self.selected_basket = selectedItem
 
     def matchBasket(self):
-        if not self.selected_basket: 
-            self.showWarning()
         # Match the selected basket to its corresponding object
         match self.selected_basket:
             case "Basket 1":
