@@ -1,10 +1,10 @@
-# Version 2.6.3 25 /04/2925
+# Version 2.6.3 26/04/2925
 
-from tkinter.ttk import Combobox
+from dropDown import DropDown
 from tkinter import Label, Button, END, Entry, messagebox
 from Frutto import Frutto
-from baskets import (basket_1, basket_2, 
-                     basket_3, basket_4, basket_5)
+from baskets import (basket_1, basket_2, basket_3,
+                     basket_4, basket_5, values)
 
 class addFruit:
     def __init__(self, master, relative, fruit):
@@ -15,11 +15,8 @@ class addFruit:
         self.selected_basket = ""
 
         # Combobox for selecting a basket
-        self.combobox = Combobox(self.master, width=45)
-        self.combobox['values'] = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
-        self.combobox["state"] = "readonly"
-        self.combobox.bind("<<ComboboxSelected>>", self.getChoice)
-        self.combobox.grid(row=0, column=0, padx=15, pady=5)
+        self.dropdown = DropDown(master, values, self.dropdownHandler)
+        self.dropdown.combobox.grid(row=0, column=0, padx=15)
 
         # Labels for inputs and last added fruit
         self.name_label = Label(self.master, text="Fruit name here:")
@@ -53,9 +50,6 @@ class addFruit:
         self.back_btn.grid(row=5, column=0, padx=40, pady=5)
         self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
     
-    def showBasketWarning(self):
-        self.messagebox = messagebox.showwarning(
-            "WARNING", "Select a basket first")
     def showEntryWarning(self):
         self.messagebox = messagebox.showwarning(
             "WARNING", "ERROR: " \
@@ -66,10 +60,6 @@ class addFruit:
         # Return to the previous window
         self.relative.deiconify()
         self.master.destroy()
-
-    def getChoice(self, placeholder):
-        # Get the selected basket
-        self.selected_basket = str(self.combobox.get())
     
     def insertFruit(self):
         self.fruit = self.getFruit()
@@ -87,15 +77,18 @@ class addFruit:
                 
                 self.addToBasket()
             else:
-                self.showBasketWarning()
+                self.dropdown.showWarning()
         except ValueError:
             self.showEntryWarning()
-    
+
+    def dropdownHandler(self, event=None):
+        selectedItem = self.dropdown.getBasket()
+        if not selectedItem:
+            self.dropdown.showWarning()
+        else:
+            self.selected_basket = selectedItem
+
     def addToBasket(self):
-        # Add the fruit to the selected basket
-        if not self.selected_basket: 
-            self.showBasketWarning()
-        
         match self.selected_basket:
             case "Basket 1":
                 basket_1.add(self.fruit)
