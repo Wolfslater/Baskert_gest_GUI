@@ -6,7 +6,7 @@ from tkinter import Text
 from factory import Factory
 from addFruit import END
 from baskets import (basket_1, basket_2, basket_3,
-                     basket_4, basket_5, values)
+                     basket_4, basket_5, VALUES)
 
 class BasketInfos:
     def __init__(self, master, relative):
@@ -28,7 +28,7 @@ class BasketInfos:
                                                             command=self.displayGrossWeight)
 
         # Dropdown to select a basket
-        self.dropdown = DropDown(master, values, self.dropdownHandler)
+        self.dropdown = DropDown(master, VALUES, self.dropdownHandler)
         self.dropdown.combobox.grid(row=0, column=6, sticky="ew")
 
         # Arrange GUI components in a grid
