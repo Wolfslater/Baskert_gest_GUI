@@ -1,4 +1,4 @@
-# Version 1.7.1 26/04/2025
+# Version 1.7.2 26/04/2025
 
 from showWarning import showWarning, MISSINGBASKET
 from dropDown import DropDown
@@ -94,10 +94,7 @@ class BasketInfos:
     
     def dropdownHandler(self, event=None):
         selectedItem = self.dropdown.getBasket()
-        if not selectedItem:
-
-            showWarning(MISSINGBASKET)
-        else:
+        if selectedItem:
             self.selected_basket = selectedItem
 
     def matchBasket(self):
@@ -113,3 +110,6 @@ class BasketInfos:
                 return basket_4
             case "Basket 5":
                 return basket_5
+            case _:
+                showWarning(MISSINGBASKET)
+                return None
