@@ -17,9 +17,9 @@ class GUIManagement:
         self.basketBtn = Factory.newButton(self.master, text="Open basket manager", command=self.basketManager)
 
         # Layout
-        self.addBtn.grid(row=0, column=0, padx=50)
-        self.exitBtn.grid(row=0, column=1, padx=15)
-        self.basketBtn.grid(row=0, column=2, padx=50)
+        Factory.gridConfig(widget=self.addBtn, row=0, column=0, padx=50)
+        Factory.gridConfig(widget=self.exitBtn, row=0, column=1, padx=15)
+        Factory.gridConfig(widget=self.basketBtn, row=0, column=2, padx=50)
 
         self.fruit = Frutto()  # Initialize fruit object
 
