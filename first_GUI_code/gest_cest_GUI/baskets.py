@@ -1,6 +1,6 @@
 #Version 0.3.0 21/04/2025
 
-from Cestino import *
+from Cestino import Cestino 
 
 # Creating multiple instances of the `Cestino` class.
 # These might represent different baskets initialized to hold items or perform specific tasks.
