@@ -2,9 +2,8 @@
 
 from showWarning import showWarning, MISSINGBASKET
 from dropDown import DropDown
-from tkinter import Text
+from tkinter import Text, END
 from factory import Factory
-from addFruit import END
 from baskets import (basket_1, basket_2, basket_3,
                      basket_4, basket_5, VALUES)
 
