@@ -1,6 +1,7 @@
-# Version 0.3.3 21/04/2925
+# Version 0.3.4 26/04/2925
 
-from addFruit import Button, Frutto, addFruit
+from addFruit import Frutto, addFruit
+from factory import Factory
 from basketManager import BasketInfos
 from tkinter import Toplevel
 
@@ -11,9 +12,9 @@ class GUIManagement:
         self.master.title("Gestionale GUI cestini di frutta")  # Set title
 
         # Buttons with commands
-        self.addBtn = Button(self.master, text="Add fruit to the basket.", command=self.add)
-        self.exitBtn = Button(self.master, text="Exit the the program.", command=self.exit)
-        self.basketBtn = Button(self.master, text="Open basket manager", command=self.basketManager)
+        self.addBtn = Factory.newButton(self.master, text="Add fruit to the basket.", command=self.add)
+        self.exitBtn = Factory.newButton(self.master, text="Exit the the program.", command=self.exit)
+        self.basketBtn = Factory.newButton(self.master, text="Open basket manager", command=self.basketManager)
 
         # Layout
         self.addBtn.grid(row=0, column=0, padx=50)

@@ -24,7 +24,7 @@ class Cestino:
             c+=x.getWeight()
         return c
     
-    def getGroosWeight(self):
+    def getGrossWeight(self):
         grossWeight = self.getTare()
         if self.getNett() != 0.0:
             grossWeight = int(self.getTare()) + int(self.getNett())

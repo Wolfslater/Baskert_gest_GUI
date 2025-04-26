@@ -15,6 +15,3 @@ class DropDown:
 
     def getBasket(self):
         return self.combobox.get()
-
-    def showWarning(self, message="Please, select a basket first!"):
-        messagebox.showwarning("WARNING", message)

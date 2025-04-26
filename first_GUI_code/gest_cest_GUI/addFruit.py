@@ -1,7 +1,9 @@
-# Version 2.6.3 26/04/2925
+# Version 2.6.4 26/04/2925
 
+from showWarning import showWarning, MISSINGBASKET, VALUEERROR
 from dropDown import DropDown
-from tkinter import Label, Button, END, Entry, messagebox
+from factory import Factory
+from tkinter import END
 from Frutto import Frutto
 from baskets import (basket_1, basket_2, basket_3,
                      basket_4, basket_5, values)
@@ -19,42 +21,36 @@ class addFruit:
         self.dropdown.combobox.grid(row=0, column=0, padx=15)
 
         # Labels for inputs and last added fruit
-        self.name_label = Label(self.master, text="Fruit name here:")
-        self.price_label = Label(self.master, text="Fruit price (€/Kg) here:")
-        self.weight_label = Label(self.master, text="Fruit weight (gr) here:")
-        self.last_fruit_label = Label(self.master)
+        self.name_label = Factory.newLabel(self.master, text="Fruit name here:")
+        self.price_label = Factory.newLabel(self.master, text="Fruit price (€/Kg) here:")
+        self.weight_label = Factory.newLabel(self.master, text="Fruit weight (gr) here:")
+        self.last_fruit_label = Factory.newLabel(self.master)
 
         # Labels layout
-        self.name_label.grid(row=1, column=0)
-        self.price_label.grid(row=2, column=0)
-        self.weight_label.grid(row=3, column=0)
-        self.last_fruit_label.grid(row=6, column=0, sticky="w")
+        Factory.gridConfig(widget=self.name_label, row=1, column=0)
+        Factory.gridConfig(widget=self.price_label, row=2, column=0)
+        Factory.gridConfig(widget=self.weight_label, row=3, column=0)
+        Factory.gridConfig(widget=self.last_fruit_label, row=6, column=0, sticky="w")
 
         # Entry widgets for user input
-        self.name_entry = Entry(self.master, width=35)
-        self.price_entry = Entry(self.master, width=35)
-        self.weight_entry = Entry(self.master, width=35)
+        self.name_entry = Factory.newEntry(self.master, width=35)
+        self.price_entry = Factory.newEntry(self.master, width=35)
+        self.weight_entry = Factory.newEntry(self.master, width=35)
 
         # Entry layout
-        self.name_entry.grid(row=1, column=1)
-        self.price_entry.grid(row=2, column=1)
-        self.weight_entry.grid(row=3, column=1)
+        Factory.gridConfig(widget=self.name_entry, row=1, column=1)
+        Factory.gridConfig(widget=self.price_entry,row=2, column=1)
+        Factory.gridConfig(widget=self.weight_entry, row=3, column=1)
 
         # Buttons for different actions
-        self.add_btn = Button(self.master, text="Add the fruit to the basket", command=self.insertFruit)
-        self.back_btn = Button(self.master, text="Back", command=self.back)
-        self.clear_btn = Button(self.master, text="Clear fruit entry infos", command=self.clearInfos)
+        self.add_btn = Factory.newButton(self.master, text="Add the fruit to the basket", command=self.insertFruit)
+        self.back_btn = Factory.newButton(self.master, text="Back", command=self.back)
+        self.clear_btn = Factory.newButton(self.master, text="Clear fruit entry infos", command=self.clearInfos)
 
         # Buttons layout
-        self.add_btn.grid(row=4, column=1, padx=5, pady=5)
-        self.back_btn.grid(row=5, column=0, padx=40, pady=5)
-        self.clear_btn.grid(row=5, column=1, padx=5, pady=5)
-    
-    def showEntryWarning(self):
-        self.messagebox = messagebox.showwarning(
-            "WARNING", "ERROR: " \
-            "MISSING DATA OR WRONG DATA TYPE." \
-            "\nPrice and weight must be numeric values.")
+        Factory.gridConfig(widget=self.add_btn, row=4, column=1, padx=5, pady=5)
+        Factory.gridConfig(widget=self.back_btn, row=5, column=0, padx=40, pady=5)
+        Factory.gridConfig(widget=self.clear_btn, row=5, column=1, padx=5, pady=5)
     
     def back(self):
         # Return to the previous window
@@ -77,14 +73,14 @@ class addFruit:
                 
                 self.addToBasket()
             else:
-                self.dropdown.showWarning()
+                showWarning(MISSINGBASKET)
         except ValueError:
-            self.showEntryWarning()
+            showWarning(VALUEERROR)
 
     def dropdownHandler(self, event=None):
         selectedItem = self.dropdown.getBasket()
         if not selectedItem:
-            self.dropdown.showWarning()
+            self.dropdown.showBasketWarning()
         else:
             self.selected_basket = selectedItem
 

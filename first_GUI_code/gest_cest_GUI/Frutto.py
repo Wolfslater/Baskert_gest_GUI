@@ -23,9 +23,9 @@ class Frutto:
     def __str__(self):
         s = ""
         s += self.name + " ("
-        s += "weight " + str(self.weight_gr) + " gr, "
-        s += "price " + str(self.price_kg) + " €/kg"
-        s += ", price " + str(self.price()) + " €)"
+        s += "weight " + str(self.weight_gr) + "gr, "
+        s += "price " + str(self.price_kg) + "€/kg"
+        s += ", price " + str(self.price()) + "€)"
         return s
 
 # I getter non prendono parametri formali #
