@@ -16,6 +16,8 @@ class addFruit:
         self.fruit = fruit
         self.selected_basket = ""
 
+        self.master.title("Fruit manager")  # Set title
+
         # Combobox for selecting a basket
         self.dropdown = DropDown(master, VALUES, self.dropdownHandler)
         self.dropdown.combobox.grid(row=0, column=0, padx=15)

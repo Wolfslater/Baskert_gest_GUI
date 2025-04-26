@@ -1,4 +1,4 @@
-# Version 0.3.4 26/04/2925
+# Version 0.3.5 26/04/2925
 
 from addFruit import Frutto, addFruit
 from factory import Factory
@@ -8,8 +8,8 @@ from tkinter import Toplevel
 class GUIManagement:
     def __init__(self, master):
         self.master = master
-        self.master.geometry("800x600")  # Set window size
-        self.master.title("Gestionale GUI cestini di frutta")  # Set title
+        self.master.geometry("600x200")  # Set window size
+        self.master.title("Main page")  # Set title
 
         # Buttons with commands
         self.addBtn = Factory.newButton(self.master, text="Add fruit to the basket.", command=self.add)

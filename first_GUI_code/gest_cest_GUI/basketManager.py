@@ -15,6 +15,8 @@ class BasketInfos:
         self.relative = relative
         self.selected_basket = ""
 
+        self.master.title("Basket manager")  # Set title
+
         # Labels and text area for basket details - NOT disabled initially
         self.basket_content = Text(self.master, bg="#f0f0f0")
 
