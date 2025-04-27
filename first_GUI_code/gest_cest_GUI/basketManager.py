@@ -1,9 +1,10 @@
-# Version 1.7.2 26/04/2025
+# Version 1.7.3 27/04/2025
 
 from showWarning import showWarning, MISSINGBASKET
 from dropDown import DropDown
-from tkinter import Text, END
+from tkinter import Text
 from factory import Factory
+from addFruit import END
 from baskets import (basket_1, basket_2, basket_3,
                      basket_4, basket_5, VALUES)
 
@@ -22,7 +23,7 @@ class BasketInfos:
         # Buttons for actions
         self.backBtn = Factory.newButton(self.master, text="Back", command=self.back)
         self.tareBtn = Factory.newButton(self.master, text="Display tare", command=self.displayTare)
-        self.netBtn = Factory.newButton(self.master, text="Display net", command=self.displaynet)
+        self.netBtn = Factory.newButton(self.master, text="Display net", command=self.displayNet)
         self.basketBtn = Factory.newButton(self.master, text="Display basket", command=self.displayBasket)
         self.PricetBtn = Factory.newButton(self.master, text="Display basket's price", command=self.displayPrice)
         self.grossBtn = Factory.newButton(self.master, text="Display basket's gross weight",
@@ -35,7 +36,7 @@ class BasketInfos:
         # Arrange GUI components in a grid
         self.master.grid_columnconfigure(0, weight=1)  # Back button column
         self.master.grid_columnconfigure(1, weight=1)  # Tare button column
-        self.master.grid_columnconfigure(2, weight=1)  # net button column
+        self.master.grid_columnconfigure(2, weight=1)  # Net button column
         self.master.grid_columnconfigure(3, weight=1)  # Gross weight column
         self.master.grid_columnconfigure(4, weight=1)  # Basket button column
         self.master.grid_columnconfigure(5, weight=1)  # Prize button column
@@ -82,10 +83,10 @@ class BasketInfos:
             self.price = self.matchBasket().getPrice()
             self.update_text_display(f"Basket's total price is: {self.price}€")
             
-    def displaynet(self):
+    def displayNet(self):
         if self.matchBasket(): 
             # Print the basket's net weight
-            self.net = self.matchBasket().getnet()
+            self.net = self.matchBasket().getNet()
             self.update_text_display(f"Basket's net is: {self.net}gr")
         
     def displayBasket(self):
