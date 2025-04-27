@@ -1,10 +1,10 @@
-#version 0.0.2 27/04/2025
+#version 0.0.2 26/04/2025
 
 from tkinter import Label, Button, Entry
 
 class Factory:
     @staticmethod
-    def __init__(self, master):
+    def __init__(master):
         master = master
 
     @staticmethod
