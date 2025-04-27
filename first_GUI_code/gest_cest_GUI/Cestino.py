@@ -1,4 +1,4 @@
-#Version 1.2.6 23/04/2025
+#Version 1.2.6 27/04/2025
 
 class Cestino:
     def __init__(self,q=None):
