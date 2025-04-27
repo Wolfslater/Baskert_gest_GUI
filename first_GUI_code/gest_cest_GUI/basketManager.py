@@ -22,7 +22,7 @@ class BasketInfos:
         # Buttons for actions
         self.backBtn = Factory.newButton(self.master, text="Back", command=self.back)
         self.tareBtn = Factory.newButton(self.master, text="Display tare", command=self.displayTare)
-        self.netBtn = Factory.newButton(self.master, text="Display net", command=self.displayNett)
+        self.netBtn = Factory.newButton(self.master, text="Display net", command=self.displaynet)
         self.basketBtn = Factory.newButton(self.master, text="Display basket", command=self.displayBasket)
         self.PricetBtn = Factory.newButton(self.master, text="Display basket's price", command=self.displayPrice)
         self.grossBtn = Factory.newButton(self.master, text="Display basket's gross weight",
@@ -35,7 +35,7 @@ class BasketInfos:
         # Arrange GUI components in a grid
         self.master.grid_columnconfigure(0, weight=1)  # Back button column
         self.master.grid_columnconfigure(1, weight=1)  # Tare button column
-        self.master.grid_columnconfigure(2, weight=1)  # Nett button column
+        self.master.grid_columnconfigure(2, weight=1)  # net button column
         self.master.grid_columnconfigure(3, weight=1)  # Gross weight column
         self.master.grid_columnconfigure(4, weight=1)  # Basket button column
         self.master.grid_columnconfigure(5, weight=1)  # Prize button column
@@ -82,11 +82,11 @@ class BasketInfos:
             self.price = self.matchBasket().getPrice()
             self.update_text_display(f"Basket's total price is: {self.price}€")
             
-    def displayNett(self):
+    def displaynet(self):
         if self.matchBasket(): 
             # Print the basket's net weight
-            self.nett = self.matchBasket().getNett()
-            self.update_text_display(f"Basket's nett is: {self.nett}gr")
+            self.net = self.matchBasket().getnet()
+            self.update_text_display(f"Basket's net is: {self.net}gr")
         
     def displayBasket(self):
         if self.matchBasket(): 
