@@ -1,4 +1,4 @@
-#version 0.0.2 26/04/2025
+#version 0.1.2 28/04/2025
 
 from tkinter import Label, Button, Entry
 
