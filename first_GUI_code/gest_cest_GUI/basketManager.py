@@ -1,4 +1,4 @@
-# Version 1.7.3 27/04/2025
+# Version 1.7.3 28/04/2025
 
 from showWarning import showWarning, MISSINGBASKET
 from dropDown import DropDown
@@ -14,6 +14,8 @@ class BasketInfos:
         self.master = master
         self.relative = relative
         self.selected_basket = ""
+        self.button = Factory.newButton
+        self.grid = Factory.gridConfig
 
         self.master.title("Basket manager")  # Set title
 
@@ -21,17 +23,16 @@ class BasketInfos:
         self.basket_content = Text(self.master, bg="#f0f0f0")
 
         # Buttons for actions
-        self.backBtn = Factory.newButton(self.master, text="Back", command=self.back)
-        self.tareBtn = Factory.newButton(self.master, text="Display tare", command=self.displayTare)
-        self.netBtn = Factory.newButton(self.master, text="Display net", command=self.displayNet)
-        self.basketBtn = Factory.newButton(self.master, text="Display basket", command=self.displayBasket)
-        self.PricetBtn = Factory.newButton(self.master, text="Display basket's price", command=self.displayPrice)
-        self.grossBtn = Factory.newButton(self.master, text="Display basket's gross weight",
+        self.backBtn = self.button(self.master, text="Back", command=self.back)
+        self.tareBtn = self.button(self.master, text="Display tare", command=self.displayTare)
+        self.netBtn = self.button(self.master, text="Display net", command=self.displayNet)
+        self.basketBtn = self.button(self.master, text="Display basket", command=self.displayBasket)
+        self.PricetBtn = self.button(self.master, text="Display basket's price", command=self.displayPrice)
+        self.grossBtn = self.button(self.master, text="Display basket's gross weight",
                                                             command=self.displayGrossWeight)
-
         # Dropdown to select a basket
         self.dropdown = DropDown(master, VALUES, self.dropdownHandler)
-        self.dropdown.combobox.grid(row=0, column=6, sticky="ew")
+        self.grid(widget=self.dropdown.combobox, row=0, column=6, sticky="ew")
 
         # Arrange GUI components in a grid
         self.master.grid_columnconfigure(0, weight=1)  # Back button column
@@ -43,16 +44,16 @@ class BasketInfos:
         self.master.grid_columnconfigure(6, weight=1)  # Dropdown column
 
         # Place the Text widget in column 1 (adjust as needed)
-        Factory.gridConfig(widget=self.basket_content,
+        self.grid(widget=self.basket_content,
         row=1, column=0, columnspan=6, sticky="nsew")  # Expand across multiple columns if necessary
 
         # Place the buttons and combobox
-        Factory.gridConfig(widget=self.backBtn , row=0, column=0, sticky="ew")
-        Factory.gridConfig(widget=self.tareBtn ,row=0, column=1, sticky="ew")
-        Factory.gridConfig(widget=self.netBtn ,row=0, column=2, sticky="ew")
-        Factory.gridConfig(widget=self.grossBtn, row=0, column=3, sticky="ew")
-        Factory.gridConfig(widget=self.basketBtn, row=0, column=4, sticky="ew")
-        Factory.gridConfig(widget=self.PricetBtn, row=0, column=5, sticky="ew")
+        self.grid(widget=self.backBtn , row=0, column=0, sticky="ew")
+        self.grid(widget=self.tareBtn ,row=0, column=1, sticky="ew")
+        self.grid(widget=self.netBtn ,row=0, column=2, sticky="ew")
+        self.grid(widget=self.grossBtn, row=0, column=3, sticky="ew")
+        self.grid(widget=self.basketBtn, row=0, column=4, sticky="ew")
+        self.grid(widget=self.PricetBtn, row=0, column=5, sticky="ew")
 
     def back(self):
         # Go back to the previous window
