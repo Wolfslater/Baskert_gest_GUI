@@ -3,9 +3,7 @@
 from tkinter import Label, Button, Entry
 
 class Factory:
-    @staticmethod
     def __init__(master):
-        master = master
 
     @staticmethod
     def newLabel(master, text=None):
