@@ -1,4 +1,4 @@
-n# Version 0.3.5 26/04/2925
+# Version 0.3.5 26/04/2925
 
 from Frutto import Frutto
 from addFruit import addFruit
@@ -11,6 +11,7 @@ class GUIManagement:
         self.master = master
         self.master.geometry("600x200")  # Set window size
         self.master.title("Main page")  # Set title
+        self.fruit = Frutto()  # Initialize fruit object
         self.button = Factory.newButton
         self.grid = Factory.gridConfig
 
@@ -23,8 +24,6 @@ class GUIManagement:
         self.grid(widget=self.addBtn, row=0, column=0, padx=50)
         self.grid(widget=self.exitBtn, row=0, column=1, padx=15)
         self.grid(widget=self.basketBtn, row=0, column=2, padx=50)
-
-        self.fruit = Frutto()  # Initialize fruit object
 
     def add(self):  # Open add fruit window
         self.master.withdraw()
