@@ -1,4 +1,4 @@
-# Version 0.3.6 28/04/2925
+# Version 0.3.6 28/04/2025
 
 from Frutto import Frutto
 from addFruit import addFruit
