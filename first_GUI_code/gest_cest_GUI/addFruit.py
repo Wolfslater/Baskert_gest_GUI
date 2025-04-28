@@ -1,4 +1,4 @@
-# Version 2.6.4 26/04/2925
+# Version 2.6.5 28/04/2925
 
 from showWarning import showWarning, MISSINGBASKET, VALUEERROR
 from dropDown import DropDown
@@ -15,6 +15,10 @@ class addFruit:
         self.relative = relative
         self.fruit = fruit
         self.selected_basket = ""
+        self.name = Factory.newLabel
+        self.entry = Factory.newEntry
+        self.button = Factory.newButton
+        self.grid = Factory.gridConfig
 
         self.master.title("Fruit manager")  # Set title
 
@@ -23,36 +27,36 @@ class addFruit:
         self.dropdown.combobox.grid(row=0, column=0, padx=15)
 
         # Labels for inputs and last added fruit
-        self.name_label = Factory.newLabel(self.master, text="Fruit name here:")
-        self.price_label = Factory.newLabel(self.master, text="Fruit price (€/Kg) here:")
-        self.weight_label = Factory.newLabel(self.master, text="Fruit weight (gr) here:")
-        self.last_fruit_label = Factory.newLabel(self.master)
+        self.name_label = self.name(self.master, text="Fruit name here:")
+        self.price_label = self.name(self.master, text="Fruit price (€/Kg) here:")
+        self.weight_label = self.name(self.master, text="Fruit weight (gr) here:")
+        self.last_fruit_label = self.name(self.master)
 
         # Labels layout
-        Factory.gridConfig(widget=self.name_label, row=1, column=0)
-        Factory.gridConfig(widget=self.price_label, row=2, column=0)
-        Factory.gridConfig(widget=self.weight_label, row=3, column=0)
-        Factory.gridConfig(widget=self.last_fruit_label, row=6, column=0, sticky="w")
+        self.grid(widget=self.name_label, row=1, column=0)
+        self.grid(widget=self.price_label, row=2, column=0)
+        self.grid(widget=self.weight_label, row=3, column=0)
+        self.grid(widget=self.last_fruit_label, row=6, column=0, sticky="w")
 
         # Entry widgets for user input
-        self.name_entry = Factory.newEntry(self.master, width=35)
-        self.price_entry = Factory.newEntry(self.master, width=35)
-        self.weight_entry = Factory.newEntry(self.master, width=35)
+        self.name_entry = self.entry(self.master, width=35)
+        self.price_entry = self.entry(self.master, width=35)
+        self.weight_entry = self.entry(self.master, width=35)
 
         # Entry layout
-        Factory.gridConfig(widget=self.name_entry, row=1, column=1)
-        Factory.gridConfig(widget=self.price_entry,row=2, column=1)
-        Factory.gridConfig(widget=self.weight_entry, row=3, column=1)
+        self.grid(widget=self.name_entry, row=1, column=1)
+        self.grid(widget=self.price_entry,row=2, column=1)
+        self.grid(widget=self.weight_entry, row=3, column=1)
 
         # Buttons for different actions
-        self.add_btn = Factory.newButton(self.master, text="Add the fruit to the basket", command=self.insertFruit)
-        self.back_btn = Factory.newButton(self.master, text="Back", command=self.back)
-        self.clear_btn = Factory.newButton(self.master, text="Clear fruit entry infos", command=self.clearInfos)
+        self.add_btn = self.button(self.master, text="Add the fruit to the basket", command=self.insertFruit)
+        self.back_btn = self.button(self.master, text="Back", command=self.back)
+        self.clear_btn = self.button(self.master, text="Clear fruit entry infos", command=self.clearInfos)
 
         # Buttons layout
-        Factory.gridConfig(widget=self.add_btn, row=4, column=1, padx=5, pady=5)
-        Factory.gridConfig(widget=self.back_btn, row=5, column=0, padx=40, pady=5)
-        Factory.gridConfig(widget=self.clear_btn, row=5, column=1, padx=5, pady=5)
+        self.grid(widget=self.add_btn, row=4, column=1, padx=5, pady=5)
+        self.grid(widget=self.back_btn, row=5, column=0, padx=40, pady=5)
+        self.grid(widget=self.clear_btn, row=5, column=1, padx=5, pady=5)
     
     def back(self):
         # Return to the previous window
