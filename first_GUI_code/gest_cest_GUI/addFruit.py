@@ -77,7 +77,7 @@ class addFruit:
                 self.last_fruit_label.config(text=
                 f"Last added fruit: {self.fruit.getName()}")
                 
-                self.addToBasket()
+                self.matchBasket()
             else:
                 showWarning(MISSINGBASKET)
         except ValueError:
@@ -90,7 +90,7 @@ class addFruit:
         else:
             self.selected_basket = selectedItem
 
-    def addToBasket(self):
+    def matchBasket(self):
         match self.selected_basket:
             case "Basket 1":
                 basket_1.add(self.fruit)
