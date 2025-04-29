@@ -85,9 +85,7 @@ class addFruit:
 
     def dropdownHandler(self, event=None):
         selectedItem = self.dropdown.getBasket()
-        if not selectedItem:
-            self.dropdown.showBasketWarning()
-        else:
+        if selectedItem:
             self.selected_basket = selectedItem
 
     def matchBasket(self):
