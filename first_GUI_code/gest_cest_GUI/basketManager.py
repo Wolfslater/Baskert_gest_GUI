@@ -1,11 +1,9 @@
-# Version 1.7.3 28/04/2025
+# Version 1.8.2 05/05/2025
 
-from showWarning import showWarning, MISSINGBASKET
-from dropDown import DropDown
 from tkinter import Text
-from factory import Factory
-from addFruit import END
-from baskets import (basket_1, basket_2, basket_3,
+from tkinter import END
+from widgets import (Warning, DropDown, Factory)
+from widgets import (basket_1, basket_2, basket_3,
                      basket_4, basket_5, VALUES)
 
 class BasketInfos:
@@ -114,5 +112,5 @@ class BasketInfos:
             case "Basket 5":
                 return basket_5
             case _:
-                showWarning(MISSINGBASKET)
+                Warning("1").showWarning()
                 return None

@@ -4,7 +4,7 @@ import random
 
 class Frutto:
     def __init__(self, q=["", "", ""]):
-        # q è una lista [nom,pre,pes] o torna con stringhe vuote(in tal caso, frutto Random)
+        # q è una lista [nom,pre,pes] oppure è None (in tal caso, frutto Random)
         if q == ["", "", ""]:
             x = random.randint(0,1)
             if x==0:
@@ -46,4 +46,3 @@ class Frutto:
     def price(self):
         c  = (self.weight_gr / 1000) * self.price_kg
         return round(c,2)
-    

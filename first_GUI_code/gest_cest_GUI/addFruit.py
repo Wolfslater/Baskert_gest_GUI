@@ -1,11 +1,9 @@
-# Version 2.6.5 28/04/2925
+# Version 2.7.5 05/05/2025
 
-from showWarning import showWarning, MISSINGBASKET, VALUEERROR
-from dropDown import DropDown
-from factory import Factory
 from tkinter import END
 from Frutto import Frutto
-from baskets import (basket_1, basket_2, basket_3,
+from widgets import (Warning, DropDown, Factory)
+from widgets import (basket_1, basket_2, basket_3,
                      basket_4, basket_5, VALUES)
 
 class addFruit:
@@ -23,7 +21,7 @@ class addFruit:
         self.master.title("Fruit manager")  # Set title
 
         # Combobox for selecting a basket
-        self.dropdown = DropDown(master, VALUES, self.dropdownHandler)
+        self.dropdown = DropDown(self.master, VALUES, self.dropdownHandler)
         self.dropdown.combobox.grid(row=0, column=0, padx=15)
 
         # Labels for inputs and last added fruit
@@ -79,9 +77,9 @@ class addFruit:
                 
                 self.matchBasket()
             else:
-                showWarning(MISSINGBASKET)
+                Warning("1").showWarning()
         except ValueError:
-            showWarning(VALUEERROR)
+            Warning("2").showWarning()
 
     def dropdownHandler(self, event=None):
         selectedItem = self.dropdown.getBasket()
