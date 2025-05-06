@@ -1,4 +1,4 @@
-# Version 1.3.5 
+# Version 2.3.6 06/05/2025
 
 from tkinter import Toplevel, Tk
 from Frutto import Frutto
@@ -9,18 +9,20 @@ from basketManager import BasketInfos
 class GUIManagement:
     def __init__(self, master):
         self.master = master
+        self.grid = Factory.gridConfig
+        self.button = Factory.newButton
         self.master.geometry("600x200")  # Set window size
         self.master.title("Main page")  # Set title
 
         # Buttons with commands
-        self.addBtn = Factory.newButton(self.master, text="Add fruit to the basket.", command=self.add)
-        self.exitBtn = Factory.newButton(self.master, text="Exit the the program.", command=self.exit)
-        self.basketBtn = Factory.newButton(self.master, text="Open basket manager", command=self.basketManager)
+        self.addBtn = self.button(self.master, text="Add fruit to the basket.", command=self.add)
+        self.exitBtn = self.button(self.master, text="Exit the the program.", command=self.exit)
+        self.basketBtn = self.button(self.master, text="Open basket manager", command=self.basketManager)
 
         # Layout
-        Factory.gridConfig(widget=self.addBtn, row=0, column=0, padx=50)
-        Factory.gridConfig(widget=self.exitBtn, row=0, column=1, padx=15)
-        Factory.gridConfig(widget=self.basketBtn, row=0, column=2, padx=50)
+        self.grid(widget=self.addBtn, row=0, column=0, padx=50)
+        self.grid(widget=self.exitBtn, row=0, column=1, padx=15)
+        self.grid(widget=self.basketBtn, row=0, column=2, padx=50)
 
         self.fruit = Frutto()  # Initialize fruit object
 

@@ -1,10 +1,8 @@
-# Version 2.7.5 05/05/2025
+# Version 2.8.5 06/05/2025
 
 from tkinter import END
 from Frutto import Frutto
-from widgets import (Warning, DropDown, Factory)
-from widgets import (basket_1, basket_2, basket_3,
-                     basket_4, basket_5, VALUES)
+from widgets import (Warning, DropDown, Factory, VALUES, baskets)
 
 class addFruit:
     def __init__(self, master, relative, fruit):
@@ -75,7 +73,7 @@ class addFruit:
                 self.last_fruit_label.config(text=
                 f"Last added fruit: {self.fruit.getName()}")
                 
-                self.matchBasket()
+                self.addToBasket()
             else:
                 Warning("1").showWarning()
         except ValueError:
@@ -86,19 +84,9 @@ class addFruit:
         if selectedItem:
             self.selected_basket = selectedItem
 
-    def matchBasket(self):
-        match self.selected_basket:
-            case "Basket 1":
-                basket_1.add(self.fruit)
-            case "Basket 2":
-                basket_2.add(self.fruit)
-            case "Basket 3":
-                basket_3.add(self.fruit)
-            case "Basket 4":
-                basket_4.add(self.fruit)
-            case "Basket 5":
-                basket_5.add(self.fruit)
-    
+    def addToBasket(self):
+        baskets.addFruit(self.selected_basket, self.fruit)
+
     def getFruit(self):
         # Create a fruit object and display its name
         name = self.name_entry.get()

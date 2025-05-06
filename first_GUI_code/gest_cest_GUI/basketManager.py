@@ -1,10 +1,8 @@
-# Version 1.8.2 05/05/2025
+# Version 1.9.2 06/05/2025
 
 from tkinter import Text
 from tkinter import END
-from widgets import (Warning, DropDown, Factory)
-from widgets import (basket_1, basket_2, basket_3,
-                     basket_4, basket_5, VALUES)
+from widgets import (Warning, DropDown, Factory, VALUES, baskets)
 
 class BasketInfos:
     def __init__(self, master, relative):
@@ -66,51 +64,37 @@ class BasketInfos:
         self.basket_content.config(state="disabled") # Make read-only
     
     def displayGrossWeight(self):
-        if self.matchBasket():
-            self.gross = self.matchBasket().getGrossWeight()
+        if self.getBasketName():
+            self.gross = self.getBasketName().getGrossWeight()
             self.update_text_display(f"Basket's gross weight is: {self.gross}gr")
 
     def displayTare(self):
-        if self.matchBasket(): 
+        if self.getBasketName(): 
         # Print the basket's tare weight
-            self.tare = self.matchBasket().getTare()
+            self.tare = self.getBasketName().getTare()
             self.update_text_display(f"Basket's tare is: {self.tare}gr")
 
     def displayPrice(self):
-        if self.matchBasket(): 
+        if self.getBasketName(): 
             # Print the basket's price
-            self.price = self.matchBasket().getPrice()
+            self.price = self.getBasketName().getPrice()
             self.update_text_display(f"Basket's total price is: {self.price}€")
             
     def displayNet(self):
-        if self.matchBasket(): 
+        if self.getBasketName(): 
             # Print the basket's net weight
-            self.net = self.matchBasket().getNet()
+            self.net = self.getBasketName().getNet()
             self.update_text_display(f"Basket's net is: {self.net}gr")
         
     def displayBasket(self):
-        if self.matchBasket(): 
+        if self.getBasketName(): 
             # Show the basket's content in the text area
-            self.update_text_display(str(self.matchBasket()))
+            self.update_text_display(str(self.getBasketName()))
     
     def dropdownHandler(self, event=None):
         selectedItem = self.dropdown.getBasket()
         if selectedItem:
             self.selected_basket = selectedItem
 
-    def matchBasket(self):
-        # Match the selected basket to its corresponding object
-        match self.selected_basket:
-            case "Basket 1":
-                return basket_1
-            case "Basket 2":
-                return basket_2
-            case "Basket 3":
-                return basket_3
-            case "Basket 4":
-                return basket_4
-            case "Basket 5":
-                return basket_5
-            case _:
-                Warning("1").showWarning()
-                return None
+    def getBasketName(self):
+        return baskets.getBasket(self.selected_basket)

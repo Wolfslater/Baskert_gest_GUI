@@ -1,4 +1,4 @@
-#Version 0.1.1 05/05/2025
+#Version 0.2.2 06/05/2025
 
 from tkinter import Label, Button, Entry, messagebox
 from tkinter.ttk import Combobox
@@ -55,10 +55,26 @@ class Warning:
     def showWarning(self):
         messagebox.showwarning("WARNING", self.matchMessage())
 
+class Baskets:
+    def __init__(self):
+        self.baskets = {
+            "Basket 1": Cestino(),
+            "Basket 2": Cestino(),
+            "Basket 3": Cestino(),
+            "Basket 4": Cestino(),
+            "Basket 5": Cestino()
+        }
+    
+    def addFruit(self, basketName, fruit):
+        if basketName in self.baskets:
+            self.baskets[basketName].add(fruit)
 
-basket_1 = Cestino()  # First basket instance
-basket_2 = Cestino()  # Second basket instance
-basket_3 = Cestino()  # Third basket instance
-basket_4 = Cestino()  # Fourth basket instance
-basket_5 = Cestino()  # Fifth basket instance
-VALUES = ["Basket 1", "Basket 2", "Basket 3", "Basket 4", "Basket 5"]
+    def getBasket(self, basketName):
+        if basketName in self.baskets:
+            return self.baskets[basketName]
+    
+    def getBasketsName(self):
+        return list(self.baskets.keys())
+    
+baskets = Baskets()
+VALUES = baskets.getBasketsName()
