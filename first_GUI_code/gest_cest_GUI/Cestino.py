@@ -1,6 +1,6 @@
 #Version 1.2.7 27/04/2025
 
-from random import randomly as rnd
+from random import randint as rnd
 
 class Cestino:
     def __init__(self,q=None):
