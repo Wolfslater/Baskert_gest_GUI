@@ -65,7 +65,7 @@ class BasketInfos:
     
     def displayGrossWeight(self):
         if self.getBasketName():
-            self.gross = self.getBasketName().getGrossWeight()
+            self.gross = self.getBasketName().gossWeight()
             self.update_text_display(f"Basket's gross weight is: {self.gross}gr")
 
     def displayTare(self):
@@ -83,7 +83,7 @@ class BasketInfos:
     def displayNet(self):
         if self.getBasketName(): 
             # Print the basket's net weight
-            self.net = self.getBasketName().getNet()
+            self.net = self.getBasketName().net()
             self.update_text_display(f"Basket's net is: {self.net}gr")
         
     def displayBasket(self):
