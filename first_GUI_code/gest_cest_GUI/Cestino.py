@@ -19,6 +19,9 @@ class Cestino:
         for x in self.cestino:
             c+=x.price()
         return round(c,2)
+
+    def getTare(self):
+        return str(self.tare)
     
     def net(self):
         c = 0.0
@@ -29,11 +32,8 @@ class Cestino:
     def grossWeight(self):
         grossWeight = self.getTare()
         if self.net() != 0.0:
-            grossWeight = int(self.getTare()) + int(self.getNet())
+            grossWeight = int(self.getTare()) + int(self.net())
         return grossWeight
-        
-    def getTare(self):
-        return str(self.tare)
 
     def len(self):
         return len(self.cestino)
