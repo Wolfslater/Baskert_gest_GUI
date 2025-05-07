@@ -1,10 +1,12 @@
 #Version 1.2.7 27/04/2025
 
+from random import randomly as rnd
+
 class Cestino:
     def __init__(self,q=None):
         # q èuna lista di frutti da mettere nel cestino, eventualmente vuoti
         self.cestino = set()
-        self.tare = 20
+        self.tare = rnd(1, 50)
         if not q is None:
             for x in q:
                 self.add(x)
