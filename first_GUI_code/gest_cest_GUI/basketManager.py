@@ -65,7 +65,7 @@ class BasketInfos:
     
     def displayGrossWeight(self):
         if self.getBasketName():
-            self.gross = self.getBasketName().gossWeight()
+            self.gross = self.getBasketName().grossWeight()
             self.update_text_display(f"Basket's gross weight is: {self.gross}gr")
 
     def displayTare(self):
