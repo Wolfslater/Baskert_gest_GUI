@@ -72,6 +72,8 @@ class Baskets:
     def getBasket(self, basketName):
         if basketName in self.baskets:
             return self.baskets[basketName]
+        else:
+            return Warning("1").showWarning()
     
     def getBasketsName(self):
         return list(self.baskets.keys())
